@@ -1,0 +1,5 @@
+# plain strings
+verboteneswort
+
+# regex
+re:\b(heil\s+hitler|hakenkreuz)\b
