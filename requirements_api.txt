@@ -1,0 +1,3 @@
+-r requirements.txt
+openai>=1.0.0
+sightengine>=1.0.0

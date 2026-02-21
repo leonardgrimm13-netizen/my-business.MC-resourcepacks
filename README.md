@@ -37,6 +37,7 @@ Ein flexibles Python-Projekt zur **Bild- und GIF-Moderation** mit mehreren Engin
 py_free_immage_moderation/
 ├── moderate_image.py          # Einstiegspunkt (CLI-Wrapper)
 ├── requirements.txt
+├── requirements_api.txt
 ├── data/
 │   ├── phash_allowlist.txt
 │   ├── phash_blocklist.txt
@@ -66,35 +67,37 @@ python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 ```
 
-### 2) Basisinstallation (offline / `--no-apis`)
+### 2) Installationsoptionen
+
+#### A) Offline/Local
 
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Enthält nur die minimal nötigen Runtime-Pakete:
+Enthält die lokalen Laufzeit- und Engine-Abhängigkeiten (ohne API-Clients):
 - `Pillow`
 - `numpy`
 - `ImageHash`
+- `opennsfw2`
+- `nudenet`
+- `ultralytics`
+- `pytesseract`
 
 Damit funktioniert die lokale Pipeline inkl. pHash und `--no-apis`.
 
-### 3) Optionale Engines separat nachinstallieren
+#### B) Mit APIs
 
 ```bash
-pip install -r requirements-optional.txt
+pip install -r requirements_api.txt
 ```
 
-Optional enthalten (je nach Bedarf):
+Enthält alles aus `requirements.txt` plus API-Clients:
 - `openai` (OpenAI-Moderation)
-- `requests` (Sightengine API-Calls)
-- `opennsfw2`
-- `nudenet`
-- `ultralytics` (YOLO)
-- `pytesseract` (OCR-Python-Binding)
+- `sightengine` (Sightengine API)
 
-### 4) Dev/Test-Abhängigkeiten
+### 3) Dev/Test-Abhängigkeiten
 
 ```bash
 pip install -r requirements-dev.txt
