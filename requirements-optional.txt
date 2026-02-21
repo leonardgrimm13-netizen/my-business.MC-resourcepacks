@@ -1,8 +1,0 @@
-# Optional moderation engines and API clients.
-# Install these only if you need the related functionality.
-openai>=1.0.0
-requests>=2.31.0
-opennsfw2>=0.1.0
-nudenet>=3.4.2
-ultralytics>=8.0.0
-pytesseract>=0.3.10
