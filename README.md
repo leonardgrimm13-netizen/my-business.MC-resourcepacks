@@ -1,4 +1,4 @@
-# 🛡️ py_free_image_moderation
+# 🛡️ py_free_immage_moderation
 
 Ein flexibles Python-Projekt zur **Bild- und GIF-Moderation** mit mehreren Engines (lokal + API), pHash-Listen und klarer CLI-Ausgabe.
 
