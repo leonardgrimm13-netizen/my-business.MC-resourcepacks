@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py-free-immage-moderation"
+version = "0.1.0"
+description = "Flexible image/GIF moderation pipeline with optional local and API engines"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "py_free_immage_moderation maintainers" }]
+license = { text = "Proprietary" }
+dependencies = []
+
+[project.scripts]
+moderate-image = "modimg.cli:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["modimg*"]
+exclude = ["tests*"]
