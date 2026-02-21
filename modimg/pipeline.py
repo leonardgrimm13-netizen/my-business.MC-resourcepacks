@@ -135,7 +135,13 @@ def run_on_input(inp: str, *, no_apis: bool = False, sample_frames: int = 12) ->
             except Exception:
                 pass
         # Can't parse the image -> require review rather than crashing.
-        v = Verdict("REVIEW", "REVIEW", scores={"nudity": 0.0, "violence": 0.0, "hate": 0.0})
+        v = Verdict(
+            label="REVIEW",
+            nudity_risk=0.0,
+            violence_risk=0.0,
+            hate_risk=0.0,
+            reasons=[f"loader_failure: {type(e).__name__}: {e}"],
+        )
         return {
             "name": display_name,
             "path": inp,
