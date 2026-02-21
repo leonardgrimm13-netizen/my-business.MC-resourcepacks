@@ -7,6 +7,7 @@ Ein flexibles Python-Projekt zur **Bild- und GIF-Moderation** mit mehreren Engin
 - [Projektstruktur](#-projektstruktur)
 - [Installation](#-installation)
 - [Schnellstart](#-schnellstart)
+- [Verifikation](#-verifikation)
 - [Wichtige Konfiguration (.env)](#-wichtige-konfiguration-env)
 - [Ergebnislogik (OK / REVIEW / BLOCK)](#-ergebnislogik-ok--review--block)
 - [Tipps für den Betrieb](#-tipps-für-den-betrieb)
@@ -33,7 +34,7 @@ Ein flexibles Python-Projekt zur **Bild- und GIF-Moderation** mit mehreren Engin
 ## 📁 Projektstruktur
 
 ```text
-py_free_image_moderation/
+py_free_immage_moderation/
 ├── moderate_image.py          # Einstiegspunkt (CLI-Wrapper)
 ├── requirements.txt
 ├── data/
@@ -60,7 +61,7 @@ py_free_image_moderation/
 
 ```bash
 git clone <REPO_URL>
-cd py_free_image_moderation
+cd py_free_immage_moderation
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 ```
@@ -150,6 +151,24 @@ python moderate_image.py ./images --recursive --json moderation_report.json
 **Exit Codes:**
 - `0` = alle Ergebnisse `OK`
 - `2` = mindestens ein Ergebnis nicht `OK`
+
+---
+
+## ✅ Verifikation
+
+```bash
+python -m compileall -q .
+pytest -q
+python moderate_image.py --help
+python moderate_image.py <bildpfad> --no-apis
+```
+
+Erwartetes Verhalten (kurz):
+- `python -m compileall -q .` → Exitcode `0` bei syntaktisch gültigem Code.
+- `pytest -q` → Exitcode `0` bei erfolgreichen Tests, sonst ungleich `0`.
+- `python moderate_image.py --help` → Exitcode `0` und Anzeige der CLI-Hilfe.
+- `python moderate_image.py <bildpfad> --no-apis` → Exitcode `0` (nur `OK`) oder `2` (mindestens ein `REVIEW/BLOCK`).
+- Optionale Engines dürfen fehlen; sie müssen in der Ausgabe sauber als `skipped`/`disabled` erscheinen, statt die Ausführung abzubrechen.
 
 ---
 
