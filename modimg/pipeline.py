@@ -7,7 +7,13 @@ from .types import EngineResult, Verdict, Frame
 from .utils import is_url, download_url_to_temp, now_ms
 from .frames import load_frames
 from .verdict import compute_verdict
-from . import phash as ph
+from .phash import (
+    append_phash_to_allowlist,
+    append_phash_to_blocklist,
+    frame_phash_hex_int,
+    get_allowlist_path,
+    get_blocklist_path,
+)
 from .engines import (
     PHashAllowlistEngine, PHashBlocklistEngine, OCREngine,
     NudeNetEngine, OpenNSFW2Engine, YOLOWorldWeaponsEngine,
@@ -80,7 +86,7 @@ def maybe_auto_learn(verdict: Verdict, frames: List[Frame]) -> Optional[str]:
         frs = [frames[0], frames[-1]] if learn_first_last and len(frames) > 1 else [frames[0]]
         hashes = []
         for fr in frs:
-            hx, _ = ph.frame_phash_hex_int(fr)
+            hx, _ = frame_phash_hex_int(fr)
             hashes.append(hx)
 
         # Defaults when PHASH_AUTO_LEARN_ENABLE=1:
@@ -97,19 +103,19 @@ def maybe_auto_learn(verdict: Verdict, frames: List[Frame]) -> Optional[str]:
 
         if verdict.label == "OK" and allow_append == "1":
             label = os.getenv("PHASH_AUTO_ALLOW_LABEL", os.getenv("PHASH_AUTO_LABEL", "ok")).strip() or "ok"
-            apath = ph.get_allowlist_path()
+            apath = get_allowlist_path()
             added_any = False
             for hx in hashes:
-                added_any = ph.append_phash_to_allowlist(hx, apath, label) or added_any
+                added_any = append_phash_to_allowlist(hx, apath, label) or added_any
             if added_any:
                 return f"Auto-added pHash to allowlist ({apath})"
         # Blocklist learning is intentionally stricter: only learn from BLOCK by default.
         if verdict.label == "BLOCK" and block_append == "1":
             label = os.getenv("PHASH_AUTO_BLOCK_LABEL", os.getenv("PHASH_AUTO_LABEL", "not_ok")).strip() or "not_ok"
-            bpath = ph.get_blocklist_path()
+            bpath = get_blocklist_path()
             added_any = False
             for hx in hashes:
-                added_any = ph.append_phash_to_blocklist(hx, bpath, label) or added_any
+                added_any = append_phash_to_blocklist(hx, bpath, label) or added_any
             if added_any:
                 return f"Auto-added pHash to blocklist ({bpath})"
     except Exception:
