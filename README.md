@@ -1,4 +1,4 @@
-# 🛡️ py_free_immage_moderation
+# 🛡️ py_free_image_moderation
 
 Ein flexibles Python-Projekt zur **Bild- und GIF-Moderation** mit mehreren Engines (lokal + API), pHash-Listen und klarer CLI-Ausgabe.
 
@@ -33,7 +33,7 @@ Ein flexibles Python-Projekt zur **Bild- und GIF-Moderation** mit mehreren Engin
 ## 📁 Projektstruktur
 
 ```text
-py_free_immage_moderation/
+py_free_image_moderation/
 ├── moderate_image.py          # Einstiegspunkt (CLI-Wrapper)
 ├── requirements.txt
 ├── data/
@@ -60,7 +60,7 @@ py_free_immage_moderation/
 
 ```bash
 git clone <REPO_URL>
-cd py_free_immage_moderation
+cd py_free_image_moderation
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 ```
