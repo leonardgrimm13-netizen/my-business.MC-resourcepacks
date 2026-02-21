@@ -65,26 +65,43 @@ python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 ```
 
-### 2) Python-Bibliotheken installieren
+### 2) Basisinstallation (offline / `--no-apis`)
 
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Installiert u. a.:
-- `openai`
-- `requests`
-- `python-dotenv`
+Enthält nur die minimal nötigen Runtime-Pakete:
 - `Pillow`
-- `ImageHash`
 - `numpy`
+- `ImageHash`
+
+Damit funktioniert die lokale Pipeline inkl. pHash und `--no-apis`.
+
+### 3) Optionale Engines separat nachinstallieren
+
+```bash
+pip install -r requirements-optional.txt
+```
+
+Optional enthalten (je nach Bedarf):
+- `openai` (OpenAI-Moderation)
+- `requests` (Sightengine API-Calls)
 - `opennsfw2`
 - `nudenet`
-- `ultralytics`
-- `pytesseract`
+- `ultralytics` (YOLO)
+- `pytesseract` (OCR-Python-Binding)
 
-### 3) Optionale System-Abhängigkeit für OCR
+### 4) Dev/Test-Abhängigkeiten
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+Enthält z. B. `pytest` für lokale Testläufe.
+
+### 5) Optionale System-Abhängigkeit für OCR
 
 Für OCR wird in der Regel eine lokale Tesseract-Installation benötigt:
 - Ubuntu/Debian: `sudo apt install tesseract-ocr`
@@ -118,7 +135,7 @@ python moderate_image.py "https://example.com/image.jpg"
 python moderate_image.py ./images --recursive
 ```
 
-### Ohne externe APIs (nur lokale Engines)
+### Ohne externe APIs (Basisinstallation ausreichend)
 
 ```bash
 python moderate_image.py ./images --recursive --no-apis
