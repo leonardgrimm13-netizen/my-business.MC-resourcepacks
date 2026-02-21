@@ -141,7 +141,7 @@ def run_on_input(inp: str, *, no_apis: bool = False, sample_frames: int = 12) ->
             "path": inp,
             "verdict": v,
             "results": [EngineResult(name="Loader", status="error", error=f"failed to load image: {type(e).__name__}: {e}")],
-            "learn": "",
+            "auto_learn": "",
         }
 
     # 1) Run pre-checks (fast short-circuit).
