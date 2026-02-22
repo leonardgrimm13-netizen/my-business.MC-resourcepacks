@@ -226,7 +226,3 @@ Nützliche Schalter:
 - Nutze `--json`, wenn Ergebnisse in CI/CD oder Backend-Services weiterverarbeitet werden sollen.
 - Pflege `data/phash_allowlist.txt` und `data/phash_blocklist.txt` regelmäßig für stabile Entscheidungen bei wiederkehrendem Content.
 - Bei GIFs ggf. `--sample-frames` erhöhen, wenn problematischer Content nur in einzelnen Frames auftaucht.
-
----
-
-Wenn du möchtest, kann ich dir als Nächstes noch eine **`.env.example`** passend zu deinem aktuellen Setup erstellen.
